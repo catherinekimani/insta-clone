@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@100;200;300;400;600&family=Fira+Sans:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Playball&display=swap');
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fafafa !important;
+}
+
+.user_card {
+    width: 35%;
+    height: 100vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #fafafa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+
+#form-title {
+    color: black;
+    font-family: 'Anek Gujarati',
+    sans-serif;
+    font-family: 'Fira Sans',
+    sans-serif;
+    font-family: 'Playball',
+    cursive;
+    font-size: 50px;
+    text-align: center;
+}
+.header{
+    font-size: 17px;
+    color: #979ea9;
+    text-align: center;
+}
+
+.insta{
+    font-size: 13px;
+    color: #979ea9;
+    text-align: center;
+}
+.login_btn {
+    width: 100%;
+    background: #b0eafd !important;
+    color: white !important;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.login_container {
+    padding: 0 2rem;
+}
+
+.input-group-text {
+    background: black !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input-group-append{
+    background-color: grey;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
