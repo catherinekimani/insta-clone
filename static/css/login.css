@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@100;200;300;400;600&family=Fira+Sans:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Playball&display=swap');
+
 body,
 html {
     margin: 0;
@@ -9,7 +10,7 @@ html {
 
 .user_card {
     width: 35%;
-    height: 120vh;
+    height: 50vh;
     margin-top: auto;
     margin-bottom: auto;
     background: #fafafa;
@@ -23,25 +24,27 @@ html {
 #form-title {
     color: black;
     font-family: 'Anek Gujarati',
-    sans-serif;
+        sans-serif;
     font-family: 'Fira Sans',
-    sans-serif;
+        sans-serif;
     font-family: 'Playball',
-    cursive;
+        cursive;
     font-size: 50px;
     text-align: center;
 }
-.header{
+
+.header {
     font-size: 17px;
     color: #979ea9;
     text-align: center;
 }
 
-.insta{
+.insta {
     font-size: 13px;
     color: #979ea9;
     text-align: center;
 }
+
 .login_btn {
     width: 100%;
     background: #b0eafd !important;
@@ -64,16 +67,31 @@ html {
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
 
-.input-group-append{
+.input-group-append {
     background-color: grey;
 }
+
 .input_user,
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
 
-img{
-    width: 70%;
-    margin-left: 15%;
+.link {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    height: 10vh;
+    width: 35%;
+    margin-left: 33%;
+    
+}
+
+img {
+    width: 20%;
+    margin-left: 40%;
 }
