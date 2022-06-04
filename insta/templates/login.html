@@ -8,7 +8,7 @@
     integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 {% block styles %}
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 {% block content %}
 <div class="container h-50">
@@ -45,10 +45,13 @@
 
             </div>
         </div>
-        <div class="mt-4">
+        <div class=" link mt-4">
             <div class="d-flex justify-content-center links">
                 Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
             </div>
     </div>
+    <br>
+    <p class="text-center">Get the app</p>
+    <img src="/static/images/app.png" alt="">
 </div>
 {% endblock %}
