@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,6 +38,7 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap5',
     'django_static_fontawesome',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,7 +90,12 @@ DATABASES = {
     }
 }
 
-
+# adding config
+cloudinary.config( 
+  cloud_name = 'dagailqvw', 
+  api_key = '688767776175743', 
+  api_secret = 'lM8iQrrJpHntJ6aNB13VIV8EYAk' 
+)
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
