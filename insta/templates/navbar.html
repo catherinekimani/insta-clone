@@ -1,0 +1,37 @@
+<div class="navigation">
+    <div class="logo">
+        <a class="no-underline" href="#">
+            Instagram
+        </a>
+    </div>
+    <div class="navigation-search-container">
+        <i class="fa fa-search"></i>
+        <input class="search-field" type="text" placeholder="Search">
+        <div class="search-container">
+            <div class="search-container-box">
+                <div class="search-results">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'index' %}"><i class="fab fa-home">home</i></a>
+    <div class="navigation-icons">
+        <a href="{% url 'profile' %}" target="_blank" class="navigation-link">
+            <i class="far fa-compass"></i>
+        </a>
+        <a class="navigation-link notifica">
+            <i class="far fa-heart">
+            </i>
+        </a>
+        <a href="{% url 'profile' %}" class="navigation-link">
+            <i class="far fa-user-circle"></i>
+        </a>
+        
+        <a href="{% url 'profile' %}" id="signout" class="navigation-link">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </div>
+</div>
+
+
