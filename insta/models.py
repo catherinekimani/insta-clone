@@ -1,11 +1,44 @@
+from email import contentmanager
+from turtle import title
 from django.db import models
+
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+
+import datetime as dt
+
 # Create your models here.
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.TextField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.profile_pic
+    def save_profile(self):
+        self.save()
+        
+    def delete_profile(self):
+        self.delete()
+    
+    def update_image(self,profile_pic,bio,user):
+        self.profile_pic = profile_pic
+        self.bio = bio
+        self.user = user
+        
+class Post(models.Model):
+    title = models.CharField(max_length=150)
+    content = models.TextField()
+    image = CloudinaryField('image')
+    date_posted = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    
+    def save_post(self):
+        self.save()
+        
+    def delete_post(self):
+        self.delete()
+        
+    def update_image(self,title,content,image,user):
+        self.title = title
+        self.content = content
+        self.image = image
+        self.user = user
