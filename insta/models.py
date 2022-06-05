@@ -30,6 +30,7 @@ class Post(models.Model):
     image = CloudinaryField('image')
     date_posted = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    likes = models.ManyToManyField(User,related_name='likes_count')
     
     def save_post(self):
         self.save()
@@ -43,6 +44,8 @@ class Post(models.Model):
         self.image = image
         self.user = user
         
+    def total_likes(self):
+        return self.likes.count()
 class Comments(models.Model):
     comment = models.TextField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -53,3 +56,4 @@ class Comments(models.Model):
         
     def delete_comment(self):
         self.delete()
+        
