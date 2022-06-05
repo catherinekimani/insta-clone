@@ -42,3 +42,14 @@ class Post(models.Model):
         self.content = content
         self.image = image
         self.user = user
+        
+class Comments(models.Model):
+    comment = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    
+    def save_comment(self):
+        self.save()
+        
+    def delete_comment(self):
+        self.delete()
