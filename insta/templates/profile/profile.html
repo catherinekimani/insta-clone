@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+{% block content %}
+{% for user in profile %}
+
+<img src="{{user.profile_pic.url}}" alt="">
+<p>Username:{{user.user}}</p>
+<p>Bio:{{user.bio}}</p>
+{% endfor %}
+{% endblock %}
