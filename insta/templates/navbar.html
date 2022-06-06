@@ -15,23 +15,28 @@
             </div>
         </div>
     </div>
+    {% if user.is_authenticated %}
     <a href="{% url 'index' %}"><i class="fab fa-home">home</i></a>
     <div class="navigation-icons">
-        <a href="{% url 'profile' %}" target="_blank" class="navigation-link">
+        <a href="" target="_blank" class="navigation-link">
             <i class="far fa-compass"></i>
         </a>
         <a class="navigation-link notifica">
             <i class="far fa-heart">
             </i>
+            <a class="navigation-link notifica" href="{% url 'addPost' %}" ><i class="fas fa-plus"></i></a>
         </a>
         <a href="{% url 'profile' %}" class="navigation-link">
             <i class="far fa-user-circle"></i>
         </a>
-        
-        <a href="{% url 'profile' %}" id="signout" class="navigation-link">
+        {% else %}
+        <a href="{% url '/login' %}" class="navigation-link" ><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        <a href="{% url '/logout' %}" id="signout" class="navigation-link">
             <i class="fas fa-sign-out-alt"></i>
         </a>
+        {% endif %}
     </div>
+    
 </div>
 
 
