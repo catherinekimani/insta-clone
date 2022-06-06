@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <img src="{{post.image.url}}" class="img-responsive" alt="">
+    </div>
+
+    <div class="row">
+        <h1 class="text-center">{{post.title}}</h1>
+    </div>
+
+    <div class="row">
+        {% autoescape on %}
+        {{post.content| safe}}
+        {% endautoescape %}
+
+    </div>
+
+    
+
+</div>
+
+{% endblock %}
