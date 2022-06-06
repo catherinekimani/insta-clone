@@ -46,14 +46,18 @@ class Post(models.Model):
         
     def total_likes(self):
         return self.likes.count()
-class Comments(models.Model):
+class Comment(models.Model):
     comment = models.TextField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='comments',on_delete=models.CASCADE)
     date_posted = models.DateTimeField(auto_now_add=True)
+    
     
     def save_comment(self):
         self.save()
         
     def delete_comment(self):
         self.delete()
+        
+    def __str__(self):
+        self.comment
         
