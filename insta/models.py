@@ -11,7 +11,7 @@ import datetime as dt
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.TextField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def save_profile(self):
         self.save()
@@ -19,10 +19,23 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
     
-    def update_image(self,profile_pic,bio,user):
-        self.profile_pic = profile_pic
-        self.bio = bio
-        self.user = user
+    @classmethod
+    def get_profile(cls):
+        profile = Profile.objects.all()
+        return profile
+
+    @classmethod
+    def search_profile(cls,search_term):
+        profile = cls.objects.filter(user__username__icontains=search_term)
+        return profile
+
+    @classmethod
+    def update_profile(cls,id,bio):
+        update = Post.objects.filter(id=id).update(bio = bio)
+        return update
+    
+    def __str__(self):
+        return self.bio
         
 class Post(models.Model):
     title = models.CharField(max_length=150)
@@ -38,17 +51,30 @@ class Post(models.Model):
     def delete_post(self):
         self.delete()
         
-    def update_image(self,title,content,image,user):
-        self.title = title
-        self.content = content
-        self.image = image
-        self.user = user
-        
+    @classmethod
+    def update_post(cls,id,post):
+        posted = Post.objects.filter(id=id).update(post = post)
+        return posted
+
+    @classmethod
+    def get_images(cls):
+        post = Post.objects.all()
+        return post
+
+    @classmethod
+    def get_image_by_id(cls):
+        post = Post.objects.filter(id=Post.id)
+        return post
+    
     def total_likes(self):
         return self.likes.count()
+    
+    def __str__(self):
+        return self.content
+    
 class Comment(models.Model):
-    comment = models.TextField()
-    post = models.ForeignKey(Post, related_name='comments',on_delete=models.CASCADE)
+    comment = models.TextField(null=True)
+    post = models.ForeignKey(Post, related_name='comments',on_delete=models.CASCADE,null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
     
     
@@ -58,6 +84,9 @@ class Comment(models.Model):
     def delete_comment(self):
         self.delete()
         
-    def __str__(self):
-        self.comment
-        
+    @classmethod
+    def get_comment(cls):
+        comment = Comment.objects.all()
+        return comment
+    
+    
