@@ -41,7 +41,6 @@ class Post(models.Model):
     image = CloudinaryField('image')
     date_posted = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    likes = models.ManyToManyField(User,related_name='likes_count')
     
     def save_post(self):
         self.save()
@@ -87,4 +86,7 @@ class Comment(models.Model):
         comment = Comment.objects.all()
         return comment
     
+class Like(models.Model):
+	user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
+	post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE)
     

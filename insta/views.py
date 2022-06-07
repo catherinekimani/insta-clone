@@ -6,7 +6,7 @@ from .forms import CreateUserForm,NewPostForm, UpdateProfileForm,NewCommentForm,
 
 from django.contrib.auth.decorators import login_required
 
-from . models import Profile,Post,Comment
+from . models import Profile,Post,Comment,Like
 
 from django.http import HttpResponseRedirect
 
@@ -61,11 +61,17 @@ def profile(request):
     return render(request,'profile/profile.html',{"form": form,'user_profile':user_profile})
 
 
-@login_required(login_url='/login/')
-def like(request):
-    post = get_object_or_404(Post,id = request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return redirect('index')
+@login_required(login_url='login')        
+def like(request, post_id):
+    user = request.user
+    post = Post.objects.get(pk=post_id)
+    like = Like.objects.filter(user=user, post=post)
+    if like:
+        like.delete()
+    else:
+        new_like = Like(user=user, post=post)
+        new_like.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required(login_url='/login/')
 def addPost(request):

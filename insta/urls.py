@@ -10,7 +10,7 @@ urlpatterns = [
     
     path('profile',views.profile,name='profile'),
     
-    path('likes_count/<int:pk>',views.like,name='likes_count'),
+    path('like/<post_id>', views.like, name='like'),
     path('comment/',views.new_comment, name = 'comment'),
     
     path('addPost/', views.addPost, name='addPost'),

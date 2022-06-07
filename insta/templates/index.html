@@ -22,14 +22,22 @@
         <div class="img">
             <a class="navigation-link notifica" a href="{% url 'comment' %}" ><i class="fa fa-comment" aria-hidden="true"></i></a>
         <a class="navigation-link notifica">
-                <a class="navigation-link notifica"  href=""><i class="far fa-heart"></i>{{total_likes}}</a>
-            </i>
+                
+            {% if post in liked_posts%}
+            <a class="navigation-link notifica"  href="{% url 'like' post_id=post.id%}"><i class="far fa-heart"></i></i></a>
+            {% else %}
+            <a class="navigation-link notifica"  href="{% url 'like' post_id=post.id%}"><i class="far fa-heart"></i></a>
+            {% endif %}
             <a class="navigation-link notifica" href=""><i class="fas fa-save" aria-hidden="true"></i></a>
+                <p class="ps-4"><strong> {{ post.likes.count }} like{{ post.likes.count | pluralize}}</strong></p>
+                    <p class="ps-4">{{ post.content|truncatechars:30 }}<span class="text-muted small">{%if post.content|wordcount > 5%}more{%endif%}</span>
+                </p>
+
         </a>
-        <h5 class="ps-4">{{post.title}}</h5>
-        <p class="ps-4">{{post.content}}</p>
     </div>
     {% endfor %}
 </div>
 </div>
 {% endblock %}
+
+
