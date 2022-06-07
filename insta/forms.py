@@ -9,13 +9,19 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username','email','password1','password2']
         
+class LoginUserForm(UserCreationForm):
+    username = forms.CharField(required=True)
+    class Meta:
+        model = User
+        fields = ['username', 'password1']
+        
 class UpdateProfileForm(forms.ModelForm):
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
-
     class Meta:
         model = Profile
-        fields = ['image', 'bio']
+        exclude = ['user', 'date_posted']
+        widgets = {
+            'tags': forms.CheckboxSelectMultiple(),
+        }
         
 class NewPostForm(forms.ModelForm):
     class Meta:
@@ -24,3 +30,12 @@ class NewPostForm(forms.ModelForm):
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
+        
+class NewCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['user', 'date_posted','post']
+        widgets = {
+            'tags': forms.CheckboxSelectMultiple(),
+        }
+        
