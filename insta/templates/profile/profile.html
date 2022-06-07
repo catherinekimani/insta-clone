@@ -1,12 +1,51 @@
-{% extends 'base.html' %}
-{% block navbar %}
-{% include 'navbar.html'%}
-{% endblock %}
-{% block content %}
-{% for user in profile %}
 
-<img src="{{user.profile_pic.url}}" alt="">
-<p>Username:{{user.user}}</p>
-<p>Bio:{{user.bio}}</p>
-{% endfor %}
-{% endblock %}
+
+{% load bootstrap5 %} {% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Edit</title>
+    {{form.media}}
+
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+    {% block navbar %}
+    {% include 'navbar.html'%}
+    {% endblock %}
+    <br><br><br><br>
+    <div class="container">
+        {% for user in user_profile %}
+        <div class="row">
+            <img src="{{user.profile_pic.url}}" class="rounded-circle" alt="" style="width: 170px; height: 170px;  " >
+        </div>
+        <div class="row">
+            {% autoescape on %}
+            <h3>{{user.bio| safe}}</h3>
+            {% endautoescape %}
+        </div>
+        {% endfor %}
+        <div class="row">
+            <h3>{{user.username}}</h3>
+        </div>
+    </div>
+    <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data" class="w-25 ms-5">
+        {%csrf_token%}
+        {% bootstrap_form form%}
+        {{form.errors}}
+        <input type="submit" class="btn btn-info btn-sm" value="Update">
+    </form>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+
+</body>
+
+</html>

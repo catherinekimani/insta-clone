@@ -1,3 +1,4 @@
+
 {% load bootstrap5 %} {% load static %}
 <!DOCTYPE html>
 <html>
@@ -15,11 +16,15 @@
 </head>
 
 <body>
-
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+<br><br><br><br>
     <form action="{%url 'addPost'%}" method="post" enctype="multipart/form-data" class="w-25 ms-5">
         {%csrf_token%}
 
         {% bootstrap_form form%}
+        
         <input type="submit" class="btn btn-info btn-sm" value="Post">
     </form>
 

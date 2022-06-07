@@ -1,0 +1,35 @@
+{% load bootstrap5 %}
+{% load static %}
+<link rel="stylesheet" href="https://fonts.google.com/">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+{% block content %}
+<br><br>
+<div class="row">
+    {% for post in post %}
+    <div class="col-md-12" >
+        <img src="{{post.image.url}}" alt="image"> <br> <br>
+        <div class="img">
+            <a class="navigation-link notifica" a href="{% url 'comment' %}" ><i class="fa fa-comment" aria-hidden="true"></i></a>
+        <a class="navigation-link notifica">
+                <a class="navigation-link notifica"  href=""><i class="far fa-heart"></i>{{total_likes}}</a>
+            </i>
+            <a class="navigation-link notifica" href=""><i class="fas fa-save" aria-hidden="true"></i></a>
+        </a>
+        <h5 class="ps-4">{{post.title}}</h5>
+        <p class="ps-4">{{post.content}}</p>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
