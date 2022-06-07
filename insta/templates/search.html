@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if username%}
+        <h2>Found {{username|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 users for the search term {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="row">
+
+        {% if profile %}
+        {% for user in username %}
+        <img src="{{user.profile_pic.url}}" alt="" class="img-fluid" style="border-radius:50%">
+        {{user.user.username}}
+        {% endfor %}
+        {% endif %}
+        </div>
+{% endblock %}

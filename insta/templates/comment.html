@@ -1,0 +1,44 @@
+{% load bootstrap5 %} {% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add Post</title>
+    {{form.media}}
+
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+    {% block navbar %}
+    {% include 'navbar.html'%}
+    {% endblock %}
+    <br><br><br><br>
+    {% if not post.comments.all %}
+    No comments ... <a href='#'>
+        Add one </a>
+    {% else %}
+    {% for comment in post.comments.all %}
+    <b>{{comment.comment}}</b>
+    {% endfor %}
+    {% endif %}
+    <form action="{% url 'comment' %}" method="post" class="w-25 ms-5">
+        {%csrf_token%}
+
+        {% bootstrap_form form%}
+        {{form.errors}}
+        <input type="submit" class="btn btn-info btn-sm" value="Comment">
+    </form>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+
+</body>
+
+</html>
