@@ -13,9 +13,23 @@
 {% block navbar %}
 {% include 'navbar.html'%}
 {% endblock %}
+{% include 'status.html'%}
 {% block content %}
 <br><br>
-<div class="row">
+<div class="profile" style="margin-left: 70%;">
+    <div class="image mx-2">
+        {%if user.profile.profile_pic %}
+        <img src="{{ user.profile.profile_pic.url }}" alt="" style="border-radius: 50%;">
+        {%else%}
+        <img src="/static/images/user (2).png" alt="" style="height: 120px; width: 120px;border-radius: 50%;">
+        {%endif%}
+    </div>
+    <div class="name mx-2 ps-5 ms-4">
+        <a href="#" class="username">{{user.username}}</a>
+    </div>
+    <button class="btn-primary btn-sm ">Follow</button>
+</div>
+<div class="row" style="margin-top: -14%; margin-left: 5%;">
     {% for post in post %}
     <div class="col-md-12" >
         <img src="{{post.image.url}}" alt="image"> <br> <br>
@@ -32,12 +46,11 @@
                 <p class="ps-4"><strong> {{ post.likes.count }} like{{ post.likes.count | pluralize}}</strong></p>
                     <p class="ps-4">{{ post.content|truncatechars:30 }}<span class="text-muted small">{%if post.content|wordcount > 5%}more{%endif%}</span>
                 </p>
-
         </a>
     </div>
     {% endfor %}
 </div>
 </div>
-{% endblock %}
 
+{% endblock %}
 
