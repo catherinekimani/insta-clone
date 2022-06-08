@@ -14,7 +14,7 @@ from django.contrib.auth import login,logout,authenticate
 # Create your views here.
 @login_required(login_url='/register/')
 def index(request):
-    post = Post.objects.all()
+    post = Post.objects.order_by('-date_posted')
     return render(request,'index.html', {'post':post})
 
 def register(request):
