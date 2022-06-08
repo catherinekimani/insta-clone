@@ -2,6 +2,15 @@
 
 #### By Catherine Kimani
 
+### SignUpPage
+![catherine](/static/images/register.png)
+
+### LoginPage
+![catherine](/static/images/login.png)
+
+### HomePage
+![catherine](/static/images/insta.png)
+
 ## Table of Content
 
 + [Description](#description)
