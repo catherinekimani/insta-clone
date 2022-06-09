@@ -9,31 +9,23 @@ import datetime as dt
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     def save_profile(self):
         self.save()
         
     def delete_profile(self):
         self.delete()
-    
-    @classmethod
-    def get_profile(cls):
-        profile = Profile.objects.all()
-        return profile
 
     @classmethod
     def search_profile(cls,search_term):
         profile = cls.objects.filter(user__username__icontains=search_term)
         return profile
 
-    @classmethod
-    def update_profile(cls,id,bio):
-        update = Post.objects.filter(id=id).update(bio = bio)
-        return update
+    
     
     def __str__(self):
-        return self.bio
+        return f'{self.user.username} Profile'
         
 class Post(models.Model):
     title = models.CharField(max_length=150)

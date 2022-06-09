@@ -22,18 +22,18 @@
     {% endblock %}
     <br><br><br><br>
     <div class="container">
-        {% for user in user_profile %}
+        {% if user.profile.profile_pic %}
         <div class="row">
-            <img src="{{user.profile_pic.url}}" class="rounded-circle" alt="" style="width: 170px; height: 170px;  " >
+            <img src="{{user.profile.profile_pic.url}}" class="rounded-circle" alt="" style="width: 170px; height: 170px; " >
         </div>
+        {% else %}
+            <img src="/static/images/user (2).png" alt="" style="width: 100px; height: 100px; border-radius: 50%;">
+        {% endif %}
         <div class="row">
             {% autoescape on %}
-            <h3>{{user.bio| safe}}</h3>
+            <p> <b> Username: </b>{{user.username}}</p>
+            <p> {{user.profile.bio| safe}}</p>
             {% endautoescape %}
-        </div>
-        {% endfor %}
-        <div class="row">
-            <h3>{{user.username}}</h3>
         </div>
     </div>
     <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data" class="w-25 ms-5">

@@ -18,10 +18,12 @@ class LoginUserForm(UserCreationForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user', 'date_posted']
-        widgets = {
-            'tags': forms.CheckboxSelectMultiple(),
-        }
+        fields = ['user','bio']
+        
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','profile_pic']
         
 class NewPostForm(forms.ModelForm):
     class Meta:

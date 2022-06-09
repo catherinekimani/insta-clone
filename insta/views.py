@@ -2,7 +2,7 @@ from audioop import reverse
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm,NewPostForm, UpdateProfileForm,NewCommentForm,LoginUserForm
+from .forms import CreateUserForm,NewPostForm, UpdateProfileForm,ProfileUpdateForm,  NewCommentForm,LoginUserForm
 
 from django.contrib.auth.decorators import login_required
 
@@ -14,8 +14,9 @@ from django.contrib.auth import login,logout,authenticate
 # Create your views here.
 @login_required(login_url='/register/')
 def index(request):
+    all_users = Profile.objects.all()
     post = Post.objects.order_by('-date_posted')
-    return render(request,'index.html', {'post':post})
+    return render(request,'index.html', {'post':post,'all_users':all_users})
 
 def register(request):
     form = CreateUserForm()
@@ -47,18 +48,17 @@ def logout_user(request):
     return redirect('login')
 @login_required(login_url='/login/')
 def profile(request):
-    current_user = request.user
-    user_profile = Profile.objects.filter(user=current_user)
     if request.method == 'POST':
-        form = UpdateProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = current_user
-            post.save()
-        return redirect('index')
+        form = UpdateProfileForm(request.POST,instance=request.user)
+        form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid() and form.is_valid():
+            form.save()
+            form.save()
+            return redirect('profile')
     else:
-        form =UpdateProfileForm()
-    return render(request,'profile/profile.html',{"form": form,'user_profile':user_profile})
+        form = UpdateProfileForm(instance=request.user)
+        form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request,'profile/profile.html', {'form':form})
 
 
 @login_required(login_url='login')        

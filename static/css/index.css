@@ -181,17 +181,6 @@ html {
 
 
 
-img{
-    width: 40%;
-    height: 45vh;
-    margin-left: 10%;
-}
-
-.img{
-    margin-left: 8%;
-    width: 50%;
-}
-
 /* status */
 .status .status-item .status-div img {
     height: 100%;
