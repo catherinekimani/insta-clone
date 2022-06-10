@@ -62,7 +62,8 @@ class Post(models.Model):
         return self.content
     
 class Comment(models.Model):
-    comment = models.TextField(null=True)
+    comment = models.CharField(null=True,max_length=250)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='comments',on_delete=models.CASCADE,null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
     
@@ -82,3 +83,8 @@ class Like(models.Model):
 	user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
 	post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE)
     
+class Follow(models.Model):
+    follower=models.ForeignKey(User,related_name='followers',on_delete=models.CASCADE)
+    followed=models.ForeignKey(User,related_name='followed',on_delete=models.CASCADE)
+    def __str__(self):
+        return self.follower
