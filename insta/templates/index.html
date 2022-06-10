@@ -21,12 +21,11 @@
     {% for post in post %}
     <img src="{{post.image.url}}" class="img-fluid" alt="Image" data-bs-toggle="modal"
         data-bs-target="#exampleModal{{post.id}}" style="max-height: 20rem;">
-    <p>{{post.content|safe}}</p>
+    <p>{{post.content|safe}}  - <small>{{ post.date_posted }}</small> </p>
     <div class="img">
-        <a class="navigation-link notifica" a href="{% url 'comment' %}"><i class="fa fa-comment"
+        <a class="navigation-link notifica" a href="comment/{{post.id}}"><i class="fa fa-comment"
                 aria-hidden="true"></i></a>
         <a class="navigation-link notifica">
-
             {% if post in liked_posts%}
             <a class="navigation-link notifica" href="{% url 'like' post_id=post.id%}"><i
                     class="far fa-heart"></i></i></a>
@@ -37,6 +36,17 @@
             <p class="ps-5 ms-4"><strong> {{ post.likes.count }} like{{ post.likes.count | pluralize}}</strong></p>
             </p>
         </a>
+        {% for comment in post.comments.all %}
+                <div>
+                    <p>{{comment.comment}}</p>
+                </div>
+                {% endfor %}
+            <form action="/comment/{{post.id}}" method="post" class="w-25 ms-5">
+                {%csrf_token%}
+                {% bootstrap_form form%}
+                    {{form.errors}}
+                    <input type="submit" class="btn btn-info btn-sm" value="Comment" name="user" >
+            </form>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -77,6 +87,13 @@
                     <img class="img-fluid mb-2 me-2" src="{{ users.profile_pic.url }}" class="rounded-circle"
                         style="width: 50px; height: 50px; border-radius: 50%;"/>
                         <span>{{users}}</span>
+                        <div class="logout ms-4">
+                                {% if user in followed %}
+                                <a href="{% url 'follow' user_id=user.id %}" class="text-danger text-muted">Unfollow</a>
+                                {% else %}
+                                <a href="{% url 'follow' user_id=user.id %}">Follow</a>
+                                {%endif%}
+                            </div>
                 </div>
                 {% endif %}
                 {% endfor %}

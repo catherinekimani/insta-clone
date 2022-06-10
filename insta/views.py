@@ -6,17 +6,23 @@ from .forms import CreateUserForm,NewPostForm, UpdateProfileForm,ProfileUpdateFo
 
 from django.contrib.auth.decorators import login_required
 
-from . models import Profile,Post,Comment,Like
+from . models import Profile,Post,Comment,Like,Follow
 
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth import login,logout,authenticate
+
+from django.contrib.auth.models import User
 # Create your views here.
 @login_required(login_url='/register/')
 def index(request):
+    followed = [i for i in User.objects.all() if Follow.objects.filter(follower = request.user, followed=i)]
     all_users = Profile.objects.all()
+    form =  NewCommentForm()
+    post = Post.objects.all()
+    all_comments = Comment.objects.all()
     post = Post.objects.order_by('-date_posted')
-    return render(request,'index.html', {'post':post,'all_users':all_users})
+    return render(request,'index.html', {'post':post,'all_users':all_users,'all_comment':all_comments,'followed':followed,'form':form})
 
 def register(request):
     form = CreateUserForm()
@@ -88,28 +94,39 @@ def addPost(request):
         form = NewPostForm()
     return render(request, 'addPost.html', {"user":current_user,"form":form})
 
-def new_comment(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = NewCommentForm(request.POST, request.FILES)
+def new_comment(request, post_id):
+    form = NewCommentForm()
+    current_user = request.user.profile
+    post = Post.objects.get(id=post_id)
+    if request.method == "POST":
+        form = NewCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.user = current_user
+            comment.profile = current_user
+            comment.post = post
             comment.save()
         return redirect('index')
-
-    else:
-        form = NewCommentForm()
-    return render(request, 'comment.html', {"user":current_user,"form": form})
+    return redirect(request, 'index.html')
 
 def search_results(request):
-    if 'username' in request.GET and request.GET["username"]:
-        search_term = request.GET.get("username")
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
         searched_profiles =Profile.search_profile(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message,"profile": searched_profiles})
-
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+    
+@login_required(login_url='login')
+def follow(request, user_id):
+    user = request.user
+    other_user = User.objects.get(id=user_id)
+    follow = Follow.objects.filter(follower=user, followed=other_user)
+    if follow:
+        follow.delete()
+    else:
+        new_follow = Follow(follower=user, followed=other_user)
+        new_follow.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
