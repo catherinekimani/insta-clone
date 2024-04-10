@@ -8,13 +8,20 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','email','password1','password2']
-        
+
 class LoginUserForm(UserCreationForm):
-    username = forms.CharField(required=True)
+    username = forms.CharField(required=True, label="Username")
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+
     class Meta:
         model = User
         fields = ['username', 'password1']
-        
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = 'Enter your username'
+        self.fields['password1'].widget.attrs['placeholder'] = 'Enter your password'
+
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
