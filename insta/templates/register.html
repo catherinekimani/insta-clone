@@ -1,63 +1,93 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container h-100">
-    <div class="d-flex justify-content-center">
-        <div class="user_card ms-5">
-            <div>
-                <h3 id="form-title">Instagram</h3>
-                <p class="header">Sign up to see photos and <br>videos from your friends.</p>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="top">
+            <div class="logo">
+                <img src="/static/images/instagram.png" alt="instagram" style="width: 175px;">
             </div>
-            <div class="d-flex justify-content-center form_container">
-
-
-                
-                <form method="POST" action="" class="ms-5">
+                <p>Sign up to see photos and videos from your friends.</p>
+                <button><i class="fab fa-facebook-square"></i>Log in with Facebook</button>
+            <div class="or">
+                <div class="line"></div>
+                <p>OR</p>
+                <div class="line"></div>
+            </div>
+<!-- form -->
+                <form class="form" method="POST" action="">
                     {% csrf_token %}
-                    <div class="input-group mb-4">
-                        <div class="input-group-append p-2">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        {{form.username}}
-                    </div>
-                    <div class="input-group mb-4">
-                        <div class="input-group-append p-2">
-                            <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        {{form.email}}
-
-                    </div>
-                    <div class="input-group mb-4">
-                        <div class="input-group-append p-2">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        {{form.password1}}
-
-                    </div>
-                    <div class="input-group mb-4">
-                        <div class="input-group-append p-2">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        {{form.password2}}
-                    </div>
-                    <br>
-                    <p class="insta">People who use our service may have uploaded your contact information to Instagram. <b>Learn <br>More</b>
-                    <br>By signing up, you agree to our <b>Terms</b> , <b>Data Policy</b> and <b>Cookies Policy</b> .</p>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <input class="btn login_btn" type="submit" value="Sign Up">
-                    </div>
-                </form>
-            </div>
-            {{form.errors}}
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    Have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+<!-- username -->
+                <div class="input_field">
+                    {{form.username}}
                 </div>
+<!-- email -->
+                <div class="input_field">
+                    {{form.email}}
+                </div>
+<!-- password1 -->
+                <div class="input_field">
+                    {{form.password1}}
+                </div>
+<!-- password1 -->
+                <div class="input_field">
+                    {{form.password2}}
+                </div>
+<!-- info -->
+                <div class="info-box">
+                    <span>People who use our service may have uploaded your contact information to Instagram. <a href="#">Learn
+                    More</a></span>
+                </div>
+<!-- terms -->
+                <ul class="terms-list">
+                    <li>By signing up, you agree to our</li>
+                    <li><a href="">Terms</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li>and</li>
+                    <li><a href="">Cookies Policy</a></li>
+                </ul>
+<!-- sign up btn -->
+                <div class="btn">
+                    <button type="submit" value="Sign up">Sign up</button>
+                </div>
+                </form>
+                </div>
+            {{form.errors}}
+            <div class="signin">
+                    <p>Have an account? <a href="{% url 'login' %}">Login</a> </p>
             </div>
-            
-            <p class="text-center">Get the app</p>
+        <div class="apps">
+            <p>Get the app.</p>
+            <div class="icons">
+                <a href="#"><img src="/static/images/appstore.png" alt="appstore"></a>
+                <a href="#"><img src="/static/images/googleplay.png" alt="googleplay"></a>
+            </div>
+        </div>
+    <div class="footer">
+        <div class="links">
+            <ul>
+                <li><a href="#">Meta</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">API</a></li>
+                <li><a href="#">Cookies Privacy</a></li>
+                <li><a href="#">DIRECTORY</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">Instagram Lite</a></li>
+                <li><a href="#">Threads</a></li>
+                <li><a href="#">Contact Uploading & Non-users</a></li>
+                <li><a href="#">Meta Verified</a></li>
+
+            </ul>
         </div>
     </div>
+    <p>© 2024 INSTAGRAM</p>
+
 </div>
+</body>
 <script>
     var form_fields = document.getElementsByTagName('input')
     form_fields[1].placeholder = 'Username..';
@@ -70,4 +100,3 @@
         form_fields[field].className += ' form-control'
     }
 </script>
-{% endblock %}
