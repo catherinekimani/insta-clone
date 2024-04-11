@@ -14,7 +14,7 @@ body {
 }
 
 .main .header {
-	max-width: 400px;
+	max-width: 350px;
 	width: 100%;
 	height: auto;
 	margin: 50px auto;
@@ -35,11 +35,12 @@ body {
 	cursor: pointer;
 }
 
-.main .header  p {
+.main .header .sub-title {
 	font-weight: bold;
-	color: #8e8e8e;
-	font-size: 20px;
-	text-align: center;
+	color: #737373;
+	font-size: 16px;
+	text-align: left;
+	margin-top: -10px;
 }
 
 .main .header .top button {
@@ -47,7 +48,7 @@ body {
 			width: 100%;
 			font-size: 16px;
 			font-weight: bold;
-			background-color: #0095f6;
+			background-color: #0095F6;
 			color: #fff;
 			border: none;
 			border-radius: 5px;
@@ -80,7 +81,7 @@ body {
 .header 
 .or 
 p {
-	color: #999;
+	color: #737373;
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -107,7 +108,7 @@ p {
 	font-size: 12px;
 	border-radius: 3px;
 	color: #262626;
-	padding: 10px;
+	padding: 12px;
 	margin: 5px 0;
 }
 
@@ -124,11 +125,11 @@ p {
 	display: flex;
 	align-items: center;
 	padding: 5px 10px;
-	font-size: 0.84rem;
+	font-size: 11px;
 }
 
 .info-box span {
-	color: #333;
+	color: #737373;
 }
 
 .info-box a {
@@ -142,9 +143,11 @@ p {
 ul.terms-list {
 	display: flex;
 	list-style: none;
-	margin: 0;
+	margin: 5px 10px;
 	padding: 0;
 	flex-wrap: wrap;
+	color: #737373;
+	font-size: 11px;
 }
 
 ul.terms-list li {
@@ -172,7 +175,7 @@ ul.terms-list li a:hover {
 	width: 100%;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #0095f6;
+	background-color: #4cb5f9;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
@@ -190,9 +193,11 @@ ul.terms-list li a:hover {
 	color: #262626;
 }
 
-.signin p>a {
+.signin p > a {
 	text-decoration: none;
-	color: #00a0f7;
+	color: #0095F6;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 .main .apps {
@@ -212,31 +217,37 @@ ul.terms-list li a:hover {
 
 /* footer */
 .footer {
-	max-width: 935px;
-	width: 100%;
-	margin: 0 auto;
-	/* padding: 80px 0; */
+	padding: 10px 0;
+	margin-top: 40px;
+}
+
+.links ul {
 	display: flex;
-	justify-content: space-between;
+	list-style: none;
+	margin: 0;
+	justify-content: center;
+	padding: 0;
+	white-space: nowrap;
 }
 
-.footer .links ul li {
-	display: inline-block;
-	margin-right: 8px;
-	margin-top: 10%;
+.links li {
+	margin-right: 15px;
 }
 
-.footer .links ul li a {
-	color: #999;
-	font-size: 12px;
+.links li:last-child {
+	margin-right: 0;
 }
 
-.footer .links ul li a:hover {
-	text-decoration: underline;
+.links a {
+	color: #333;
+	text-decoration: none;
+	font-size: 0.8rem;
+	font-size: 0.75rem;
+	white-space: nowrap;
 }
 
-.footer .copyright {
-	color: #999;
+.copy .copyright {
+	color: #737373;
+	font-size: 14px;
+	text-align: center;
 }
-
-

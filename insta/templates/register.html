@@ -1,4 +1,5 @@
 {% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 <body>
     <div class="main">
@@ -7,7 +8,7 @@
             <div class="logo">
                 <img src="/static/images/instagram.png" alt="instagram" style="width: 175px;">
             </div>
-                <p>Sign up to see photos and videos from your friends.</p>
+                <p class="sub-title">Sign up to see photos and videos from your friends.</p>
                 <button><i class="fab fa-facebook-square"></i>Log in with Facebook</button>
             <div class="or">
                 <div class="line"></div>
@@ -84,8 +85,9 @@
             </ul>
         </div>
     </div>
-    <p>© 2024 INSTAGRAM</p>
-
+    <div class="copy">
+    <p class="copyright">© 2024 INSTAGRAM</p>
+    </div>
 </div>
 </body>
 <script>
