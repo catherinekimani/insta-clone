@@ -55,6 +55,14 @@ def logout_user(request):
     return redirect('login')
 @login_required(login_url='/login/')
 def profile(request):
+    user = request.user
+    
+    posts_count = Post.objects.filter(user=user).count()
+    
+    followers_count = Follow.objects.filter(followed=user).count()
+    
+    following_count = Follow.objects.filter(follower=user).count()
+    
     if request.method == 'POST':
         form = UpdateProfileForm(request.POST,instance=request.user)
         form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
@@ -65,7 +73,15 @@ def profile(request):
     else:
         form = UpdateProfileForm(instance=request.user)
         form = ProfileUpdateForm(instance=request.user.profile)
-    return render(request,'profile/profile.html', {'form':form})
+    context = {
+        'user': user,
+        'posts_count': posts_count,
+        'followers_count': followers_count,
+        'following_count': following_count,
+        'form': form,
+        'profile_form': ProfileUpdateForm,
+    }
+    return render(request,'profile/profile.html',context)
 
 
 @login_required(login_url='login')        

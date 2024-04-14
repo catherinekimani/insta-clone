@@ -32,9 +32,9 @@
     <div class="profile-stats">
     
     <ul>
-    <li><span class="profile-stat-count">164</span> posts</li>
-    <li><span class="profile-stat-count">188</span> followers</li>
-    <li><span class="profile-stat-count">206</span> following</li>
+    <li><span class="profile-stat-count">{{ posts_count }}</span> posts</li>
+    <li><span class="profile-stat-count">{{ followers_count }}</span> followers</li>
+    <li><span class="profile-stat-count">{{ following_count }}</span> following</li>
     </ul>
     
     </div>
@@ -43,11 +43,22 @@
             <p> <span class="profile-real-name"> {{user.username}}</span> {{user.profile.bio| safe}} </p>
             {% endautoescape %}
         </div>
+        <div class="add-highlights-btn">
+            <button class="btn-circle"><i class="fas fa-plus"></i></button>
+            <p>New</p>
+        </div>
         </div>
         </div>
         <!-- end -->
 </header>
-
+<div class="all">
+    <hr class="separator">
+    <ul class="nav-links">
+        <li><a href="#">Posts</a></li>
+        <li><a href="#">Saved</a></li>
+        <li><a href="#">Tagged</a></li>
+    </ul>
+</div>
 <main>
 
         <!-- <div class="posts">

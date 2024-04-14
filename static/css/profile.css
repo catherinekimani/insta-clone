@@ -1,4 +1,6 @@
-
+:root {
+	font-size: 10px;
+}
 
 *,
 *::before,
@@ -9,8 +11,8 @@
 body {
 	font-family: "Open Sans", Arial, sans-serif;
 	min-height: 100vh;
-	background-color: #fafafa;
-	color: #262626;
+	background-color: #000000;
+	color: #fafafa;
 	padding-bottom: 3rem;
 }
 .container {
@@ -152,4 +154,60 @@ body {
 .profile-stat-count,
 .profile-edit-btn {
 	font-weight: 600;
+}
+
+.add-highlights-btn {
+	text-align: left;
+}
+
+.add-highlights-btn .btn-circle {
+	background-color: #000000;
+	border: 2px solid #262626;
+	color: #262626;
+	border-radius: 50%;
+	padding: 30px;
+	font-size: 24px;
+	cursor: pointer;
+	margin-top: 3%;
+	margin-left: 25px;
+	
+}
+
+.add-highlights-btn p {
+	margin-left: 5%;
+	font-size: 16px;
+}
+
+.all {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.separator {
+	border: none;
+	border-top: 2px solid #262626;
+	width:800px;
+	margin: 20px auto;
+}
+
+.nav-links {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.nav-links li {
+	display: inline;
+	margin-right: 5%;
+}
+
+.nav-links li:last-child {
+	margin-right: 0;
+}
+
+.nav-links li a {
+	color: #262626;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
 }
