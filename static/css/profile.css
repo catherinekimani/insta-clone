@@ -16,7 +16,7 @@ body {
 	padding-bottom: 3rem;
 }
 .container {
-	max-width: 93.5rem;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0 2rem;
 }
@@ -61,12 +61,6 @@ body {
 
 .profile {
 	padding: 5rem 0;
-}
-
-.profile::after {
-	content: "";
-	display: block;
-	clear: both;
 }
 
 .profile-image {
@@ -156,30 +150,8 @@ body {
 	font-weight: 600;
 }
 
-.add-highlights-btn {
-	text-align: left;
-}
-
-.add-highlights-btn .btn-circle {
-	background-color: #000000;
-	border: 2px solid #262626;
-	color: #262626;
-	border-radius: 50%;
-	padding: 30px;
-	font-size: 24px;
-	cursor: pointer;
-	margin-top: 3%;
-	margin-left: 25px;
-	
-}
-
-.add-highlights-btn p {
-	margin-left: 5%;
-	font-size: 16px;
-}
-
 .all {
-	margin-top: 20px;
+	margin-top: 10%;
 	text-align: center;
 }
 
@@ -211,3 +183,142 @@ body {
 	font-size: 16px;
 	font-weight: bold;
 }
+
+	.no-posts-container {
+		text-align: center;
+		margin-top: 20px;
+		}
+
+	.no-posts {
+		font-size: 18px;
+		color: #888;
+		}
+
+	.no-posts-img {
+		width: 150px;
+		height: auto;
+		margin-bottom: 10px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* footer */
+	.footer {
+		padding: 10px 0;
+		margin-top: 15%;
+	}
+
+	.links ul {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		justify-content: center;
+		padding: 0;
+		white-space: nowrap;
+	}
+
+	.links li {
+		margin-right: 15px;
+	}
+
+	.links li:last-child {
+		margin-right: 0;
+	}
+
+	.links a {
+		color: #fafafa;
+		text-decoration: none;
+		font-size: 0.8rem;
+		font-size: 1rem;
+		white-space: nowrap;
+	}
+	.copy .copyright {
+		color: #fafafa;
+		font-size: 16px;
+		text-align: center;
+	}
+/* end of footer */
+
+/* profile update form styling */
+.modal-content {
+	background: rgba(255, 230, 230, 0.29);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 230, 230, 0.3);
+}
+.modal-title {
+	font-size: 20px;
+	color: #f5f5f5;
+	font-weight: bold;
+}
+.profile-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.current-profile-pic {
+	display: flex;
+	align-items: center;
+}
+
+.current-profile-pic p {
+	margin: 0;
+	color: #fafafa;
+	font-size: 18px;
+}
+.current-profile-pic img {
+	width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		object-fit: cover;
+		margin-right: 10px;
+	}
+
+	.change-photo label {
+		cursor: pointer;
+	}
+
+	.form-group label {
+		margin-bottom: 25px;
+		font-size: 18px;
+	}
+
+.input_field input[type="file"] {
+	display: none;
+}
+
+.input_field label {
+	background-color: #0095f6;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.update-btn .update {
+	background-color: #0095f6;
+	color: white;
+	padding: 10px 24px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.btns {
+	background-color: #0095f6;
+	color: white;
+	padding: 10px 24px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.btns:hover {
+	background-color: #0095f6;
+}
+/* end form styling  */
