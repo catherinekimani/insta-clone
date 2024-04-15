@@ -28,6 +28,8 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ['user','bio']
         
 class ProfileUpdateForm(forms.ModelForm):
+    profile_pic = forms.ImageField(label='Choose Photo', widget=forms.FileInput(attrs={'accept': 'image/*'}))
+    
     class Meta:
         model = Profile
         fields = ['bio','profile_pic']
