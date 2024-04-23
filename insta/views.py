@@ -1,4 +1,4 @@
-from audioop import reverse
+from django.urls import reverse
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.contrib.auth.forms import UserCreationForm
@@ -14,16 +14,34 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login,logout,authenticate
 
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='/register/')
 def index(request):
-    followed = [i for i in User.objects.all() if Follow.objects.filter(follower = request.user, followed=i)]
+    user = request.user
+    followed = user.followed.all()
+    # print(followed)
+    # followed = [i for i in User.objects.all() if Follow.objects.filter(follower = request.user, followed=i)]
     all_users = Profile.objects.all()
     form =  NewCommentForm()
     post = Post.objects.all()
     all_comments = Comment.objects.all()
     post = Post.objects.order_by('-date_posted')
-    return render(request,'index.html', {'post':post,'all_users':all_users,'all_comment':all_comments,'followed':followed,'form':form})
+
+    # Suggestions
+    followed_users_ids = Follow.objects.filter(follower=request.user).values_list('followed', flat=True)
+    all_users = User.objects.exclude(id=request.user.id)
+    suggested_users = [(user, user.id in followed_users_ids) for user in all_users]
+
+    return render(request,'index.html', 
+                {'post':post,
+                'all_users':all_users,
+                'all_comment':all_comments,
+                'followed':followed,
+                'suggested_users': suggested_users,
+                'form':form
+                }
+                )
 
 def register(request):
     form = CreateUserForm()
@@ -139,11 +157,12 @@ def search_results(request):
 @login_required(login_url='login')
 def follow(request, user_id):
     user = request.user
-    other_user = User.objects.get(id=user_id)
-    follow = Follow.objects.filter(follower=user, followed=other_user)
-    if follow:
-        follow.delete()
+    other_user = get_object_or_404(User, id=user_id)
+    follow_exists = Follow.objects.filter(follower=user, followed=other_user).exists()
+    
+    if follow_exists:
+        Follow.objects.filter(follower=user, followed=other_user).delete()
     else:
-        new_follow = Follow(follower=user, followed=other_user)
-        new_follow.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        Follow.objects.create(follower=user, followed=other_user)
+    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('index')))
