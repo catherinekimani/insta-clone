@@ -35,13 +35,19 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['bio','profile_pic']
         
 class NewPostForm(forms.ModelForm):
+    image = forms.ImageField(label='Select from your computer', widget=forms.FileInput(attrs={'accept': 'image/*'}))
+
     class Meta:
         model = Post
         exclude = ['user', 'date_posted']
+        fields = ['content', 'image', 'title']
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
-        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['content'].widget.attrs['placeholder'] = 'Write your caption'
+
 class NewCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
