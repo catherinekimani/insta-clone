@@ -43,6 +43,18 @@ def index(request):
                 }
                 )
 
+@login_required(login_url='/register/')
+def posts(request):
+    form =  NewCommentForm()
+    post = Post.objects.all()
+    all_comments = Comment.objects.all()
+    post = Post.objects.order_by('-date_posted')
+    return render(request,['explore.html'], 
+                {'post':post,
+                'all_comment':all_comments,
+                'form':form
+                }
+                )
 def register(request):
     form = CreateUserForm()
     
@@ -71,10 +83,12 @@ def login_user(request):
 def logout_user(request):
     logout (request)
     return redirect('login')
+
 @login_required(login_url='/login/')
 def profile(request):
     user = request.user
-    
+
+    posts = Post.objects.filter(user=user)
     posts_count = Post.objects.filter(user=user).count()
     
     followers_count = Follow.objects.filter(followed=user).count()
@@ -93,6 +107,7 @@ def profile(request):
         form = ProfileUpdateForm(instance=request.user.profile)
     context = {
         'user': user,
+        'posts': posts,
         'posts_count': posts_count,
         'followers_count': followers_count,
         'following_count': following_count,
@@ -120,14 +135,18 @@ def addPost(request):
     if request.method == 'POST':
         form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
+            print("Form is valid")
             post = form.save(commit=False)
             post.user = current_user
             post.save()
-        return redirect('index')
-
+            print("Post saved successfully")
+        else:
+            print("Form is not valid")
+            print(form.errors)
+        return redirect('addPost')
     else:
         form = NewPostForm()
-    return render(request, 'addPost.html', {"user":current_user,"form":form})
+    return render(request, 'addPost.html', {"user": current_user, "form": form})
 
 def new_comment(request, post_id):
     form = NewCommentForm()
