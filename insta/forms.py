@@ -39,8 +39,8 @@ class NewPostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        exclude = ['user', 'date_posted']
-        fields = ['content', 'image', 'title']
+        exclude = ['user', 'date_posted', 'title']
+        fields = ['content', 'image']
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
