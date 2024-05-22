@@ -54,6 +54,10 @@ class NewCommentForm(forms.ModelForm):
         exclude = ['user', 'date_posted']
         fields = ['comment']
         widgets = {
+            'comment': forms.TextInput(attrs={'placeholder': 'Add a comment...'}), 
             'tags': forms.CheckboxSelectMultiple(),
+        }
+        labels ={
+            'comment':False
         }
         
