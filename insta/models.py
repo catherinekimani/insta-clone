@@ -22,7 +22,7 @@ class Profile(models.Model):
         profile = cls.objects.filter(user__username__icontains=search_term)
         return profile
 
-    
+
     
     def __str__(self):
         return f'{self.user.username} Profile'
