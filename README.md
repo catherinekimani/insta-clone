@@ -3,23 +3,31 @@
 #### By Catherine Kimani
 
 ### SignUpPage
-![catherine](/static/images/register.png)
+![catherine](/static/images/signup.png)
 
 ### LoginPage
 ![catherine](/static/images/login.png)
 
 ### HomePage
-![catherine](/static/images/insta.png)
+![catherine](/static/images/homepage.png)
 
 ## Table of Content
 
-+ [Description](#description)
-+ [User Stories](#user-stories)
-+ [Live Link](#live-link)
-+ [Installation Requirement](#Installation)
-+ [Technology Used](#technology-used)
-+ [Licence](#licence)
-+ [Authors Info](#author-Info)
+- [Insta Clone](#insta-clone)
+			- [By Catherine Kimani](#by-catherine-kimani)
+		- [SignUpPage](#signuppage)
+		- [LoginPage](#loginpage)
+		- [HomePage](#homepage)
+	- [Table of Content](#table-of-content)
+	- [Description](#description)
+	- [User Stories](#user-stories)
+	- [Live Link](#live-link)
+	- [Installation](#installation)
+		- [Requirements](#requirements)
+		- [Installation Process](#installation-process)
+	- [Technology Used](#technology-used)
+	- [Licence](#licence)
+	- [Authors Info](#authors-info)
 
 ## Description
 <P> A Clone Web Application for Instagram built with Python and Django where user (s) can Upload Pictures,View Posts,Like and Comment on various post. </p>
