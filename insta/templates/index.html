@@ -12,62 +12,7 @@
 {% block navbar %}
 {% include 'navbar.html'%}
 {% endblock %}
-
-
-{% block content %}
-<br><br>
-<div class="d-flex container mx-auto justify-content-around">
-    <div style="max-width: 50%;">
-    {% for post in post %}
-    <img src="{{post.image.url}}" class="img-fluid" alt="Image" data-bs-toggle="modal"
-        data-bs-target="#exampleModal{{post.id}}" style="max-height: 20rem;">
-    <p>{{post.content|safe}}  - <small>{{ post.date_posted }}</small> </p>
-    <div class="img">
-        <a class="navigation-link notifica" a href="comment/{{post.id}}"><i class="fa fa-comment"
-                aria-hidden="true"></i></a>
-        <a class="navigation-link notifica">
-            {% if post in liked_posts%}
-            <a class="navigation-link notifica" href="{% url 'like' post_id=post.id%}"><i
-                    class="far fa-heart"></i></i></a>
-            {% else %}
-            <a class="navigation-link notifica" href="{% url 'like' post_id=post.id%}"><i class="far fa-heart"></i></a>
-            {% endif %}
-            <a class="navigation-link notifica" href=""><i class="fas fa-save" aria-hidden="true"></i></a>
-            <p class="ps-5 ms-4"><strong> {{ post.likes.count }} like{{ post.likes.count | pluralize}}</strong></p>
-            </p>
-        </a>
-        {% for comment in post.comments.all %}
-                <div>
-                    <p>{{comment.comment}}</p>
-                </div>
-                {% endfor %}
-            <form action="/comment/{{post.id}}" method="post" class="w-25 ms-5">
-                {%csrf_token%}
-                {% bootstrap_form form%}
-                    {{form.errors}}
-                    <input type="submit" class="btn btn-info btn-sm" value="Comment" name="user" >
-            </form>
-    </div>
-
-    <div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{post.title}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{post.content|safe}}</p>
-                    <img src="{{post.image.url}}" class="img-fluid" alt="Image" height="300vh" width="100">
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    </div>
     {% block suggestions %}
     {% include 'suggestions.html'%}
     {% endblock %}
-</div>
-{% endblock %}
+

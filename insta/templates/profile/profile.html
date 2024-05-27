@@ -63,10 +63,15 @@
 </div>
 
 <!-- posts display -->
-<div class="posts">
-    {% if user.profile.image.all %}
-    {% for post in user.profile.image.all %}
-    <img class="img-fluid" src="{{post.image.url}}" alt="">
+<div class="posts col-md-6 m-auto">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="card">
+    <img class="card-img" src="{{ post.image.url }}" alt="">
+    <div class="card-overlay">
+        <p class="post-content">{{post.content}}</p>
+    </div>
+    </div>
     {% endfor %}
     {% else %}
     <div class="no-posts-container">
@@ -75,6 +80,7 @@
     </div>
     {% endif %}
 </div>
+
 <!-- footer -->
     <div class="footer">
         <div class="links">
